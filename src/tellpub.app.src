@@ -1,0 +1,15 @@
+{application, tellpub,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+		  lager,
+		  tellstick,
+		  ebus
+                 ]},
+  {mod, { tellpub_app, []}},
+  {env, []}
+ ]}.
