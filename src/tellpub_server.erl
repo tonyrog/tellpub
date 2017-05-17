@@ -106,15 +106,17 @@ handle_info({tellstick_event,Ref,Data},  State)
   when Ref =:= State#state.subscription ->
     case match(State#state.action_list, Data) of
 	false ->
+	    lager:info("data=~p", [Data]),
 	    {noreply, State};
 	{_Pattern,Inhibit,Topic,Message} ->
 	    IKey = {Topic,Message},
 	    case lists:member(IKey,State#state.inhibit) of
 		false ->
-		    ebus:pub(Topic, Message),
+		    xbus:pub(Topic,Message),
 		    erlang:start_timer(Inhibit,self(),{inhibit,IKey}),
 		    IList = [IKey|State#state.inhibit],
-		    lager:info("event ~p", [Data]),
+		    %% lager:info("topic=~p, message=~p, data=~p", 
+		    %% [Topic,Message,Data]),
 		    {noreply, State#state { inhibit = IList }};
 		true ->
 		    {noreply, State}

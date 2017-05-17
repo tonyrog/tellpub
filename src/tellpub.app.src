@@ -8,7 +8,8 @@
                   stdlib,
 		  lager,
 		  tellstick,
-		  ebus
+		  xbus,
+		  exobus
                  ]},
   {mod, { tellpub_app, []}},
   {env, []}

@@ -1,3 +1,3 @@
 # tellpub
 
-tellstick/erlbus monitor application
+tellstick/xbus monitor application
